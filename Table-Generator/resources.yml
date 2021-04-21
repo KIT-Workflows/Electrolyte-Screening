@@ -1,0 +1,15 @@
+- - True
+  - CPUs per Node
+  - 1
+- - True
+  - Number of Nodes
+  - 1
+- - True
+  - Memory [MB]
+  - 1024
+- - True
+  - Time [Wall]
+  - 30
+- - True
+  - Queue
+  - short

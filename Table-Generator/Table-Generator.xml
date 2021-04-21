@@ -1,0 +1,42 @@
+<WaNoTemplate>
+
+	<WaNoMeta>
+ 		<Author>
+  			<Name> Celso R. C. Rego </Name>
+  			<Email>celsorego@kit.edu</Email>
+ 		</Author>
+
+		<Description>
+   			This WaNo uses a python script
+			to generate a table in .yml file.
+ 		</Description>
+
+ 		<Keyword>Analysis</Keyword>
+	</WaNoMeta>
+
+	<WaNoRoot name="Table-Generator">
+		<WaNoString name="Search-in-file">OUTCAR</WaNoString>
+		<WaNoBool name="Delete-Files">False</WaNoBool>
+		<WaNoMultipleOf name="Search-Parameters">
+ 			<Element id="0">
+ 				<WaNoString name="var">var-x</WaNoString>
+ 			</Element>
+ 		</WaNoMultipleOf>
+	</WaNoRoot>
+
+	<WaNoExecCommand>
+		source /home/ws/gt5111/miniconda3/etc/profile.d/conda.sh
+		conda activate
+		python extract_script.py
+	</WaNoExecCommand>
+	
+	<WaNoInputFiles>
+		<WaNoInputFile logical_filename="extract_script.py">extract_script.py</WaNoInputFile>
+
+	</WaNoInputFiles>
+	
+	<WaNoOutputFiles>
+		<WaNoOutputFile>Table-var</WaNoOutputFile>
+		<WaNoOutputFile>Table-var-dict.yml</WaNoOutputFile>		
+	</WaNoOutputFiles>
+</WaNoTemplate>

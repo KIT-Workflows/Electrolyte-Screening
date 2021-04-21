@@ -1,0 +1,35 @@
+<WaNoTemplate>
+  
+  <WaNoRoot name="Range_It">
+      
+      <WaNoBool name="Float">False</WaNoBool>
+      <WaNoFloat visibility_condition="%s == True" visibility_var_path="Float" name="VarF-begin">1.0</WaNoFloat>
+	    <WaNoFloat visibility_condition="%s == True" visibility_var_path="Float" name="VarF-end">10.0</WaNoFloat>
+      <WaNoInt visibility_condition="%s == True" visibility_var_path="Float" name="N-points">10</WaNoInt>
+
+      <WaNoBool name="Int">False</WaNoBool>
+      <WaNoInt visibility_condition="%s == True" visibility_var_path="Int" name="VarI-begin">1</WaNoInt>
+	    <WaNoInt visibility_condition="%s == True" visibility_var_path="Int" name="VarI-end">10</WaNoInt>
+      <WaNoInt visibility_condition="%s == True" visibility_var_path="Int" name="Step">2</WaNoInt>
+
+			    
+  </WaNoRoot>
+  <!-- source /home/ws/gt5111/miniconda3/etc/profile.d/conda.sh int-nano-->
+  <!-- source /home/tutorial01/miniconda3/etc/profile.d/conda.sh bionano-->
+  <WaNoExecCommand>
+    source /home/ws/gt5111/miniconda3/etc/profile.d/conda.sh
+	  conda activate
+    python gen_var.py
+  </WaNoExecCommand>
+  
+    <WaNoInputFiles>
+      <WaNoInputFile logical_filename="gen_var.py">gen_var.py</WaNoInputFile>
+    </WaNoInputFiles>   
+    
+    <WaNoOutputFiles>
+      <WaNoOutputFile>output_dict.yml</WaNoOutputFile>
+    </WaNoOutputFiles>
+</WaNoTemplate>
+
+
+

@@ -1,0 +1,103 @@
+
+<WaNoTemplate>
+
+	<WaNoMeta>
+ 		<Author>
+  			<Name> Tobias Schlöder and Celso R. C. Rego </Name>
+  			<Email> tobias.schloeder@kit.edu, celsorego@kit.edu</Email>
+ 		</Author>
+
+		<Description>
+			This WaNo performs the DFT calculation using Turbomole code. Here all 
+			the inputs files might be automatically generated or loaded.
+ 		</Description>
+
+ 		<Keyword>DFT</Keyword>
+	</WaNoMeta>
+
+    <WaNoRoot name="DFT-Turbomole">
+
+	    	<WaNoDictBox name="Molecular-structure">
+				<WaNoFile logical_filename="structure-file" name="Structure-file"> enter the file.xyz format</WaNoFile>
+				<WaNoBool name="Symmetry">False</WaNoBool>
+				<WaNoFloat visibility_condition="%s == True" visibility_var_path="Molecular-structure.Symmetry" name="Threshold">0.1</WaNoFloat>
+				<WaNoBool name="Internal-coordinates">True</WaNoBool>
+            </WaNoDictBox>
+
+            <WaNoDictBox name="Basis-set">
+                <WaNoDropDown name="Basis-set-types">
+                    <Entry id="0" chosen="True">def-SV(P)</Entry>
+                    <Entry id="1">def2-SVP</Entry>
+	            <Entry id="2">def2-TZVP</Entry>
+	            <Entry id="3">def2-TZVPP</Entry>
+	            <Entry id="4">def2-QZVP</Entry>
+	            <Entry id="5">def2-QZVPP</Entry>
+	            <Entry id="6">6-31G</Entry>
+	            <Entry id="7">6-31G*</Entry>
+	            <Entry id="8">6-311G</Entry>
+	            <Entry id="9">6-311G*</Entry>
+	            <Entry id="10">cc-pVDZ</Entry>
+	            <Entry id="11">aug-cc-pVDZ</Entry>
+	            <Entry id="12">cc-pVTZ</Entry>
+	            <Entry id="13">aug-cc-pVTZ</Entry>
+	            <Entry id="14">cc-pVQZ</Entry>
+	            <Entry id="15">aug-cc-pVQZ</Entry>
+	        </WaNoDropDown>
+            </WaNoDictBox>
+            <WaNoDictBox name="Starting-orbitals">
+                <WaNoInt name="Charge" description = "Extended Hueckel Guess">1</WaNoInt>
+            </WaNoDictBox>
+            
+			<WaNoDictBox name="Approach">
+	        	
+				<WaNoDropDown name="Method">
+                    <Entry id="0">hf</Entry>
+    	            <Entry id="1" chosen="True">dft</Entry>
+	            	<Entry id="2">post-hf</Entry>
+	        	</WaNoDropDown>
+	        	
+				<WaNoDropDown name="Functional">
+                    <Entry id="0">b-p</Entry>
+    	            <Entry id="1" chosen="True">pbe</Entry>
+	            	<Entry id="2">b3-lyp</Entry>
+	            	<Entry id="3">pbe0</Entry>
+	            	<Entry id="4">m06</Entry>
+	            	<Entry id="5">m06-2x</Entry>
+	            	<Entry id="6">tpss</Entry>
+	            	<Entry id="7">tpssh</Entry>
+	        	</WaNoDropDown>
+				
+				<WaNoBool name="Dispersion-corrections" description="Grimme vdW corrections">False</WaNoBool>
+				<WaNoDropDown visibility_condition="%s == True" visibility_var_path="Approach.Dispersion-corrections" name="vdw-corrections">
+					<Entry id="0" chosen="True">disp2</Entry>
+					<Entry id="1">disp3</Entry>
+					<Entry id="2">disp3 -bj</Entry>
+	        	</WaNoDropDown>
+
+				<WaNoDropDown name="Optimizer">
+                    <Entry id="0" chosen="True">single-shot</Entry>
+    	            <Entry id="1">geometry-optimization</Entry>
+	        	</WaNoDropDown>
+
+	    	</WaNoDictBox>
+    </WaNoRoot>
+
+    <WaNoExecCommand>
+	source /home/ws/gt5111/miniconda3/etc/profile.d/conda.sh
+	conda activate
+	python define_file.py
+ 
+	bash ./define_file.sh
+	</WaNoExecCommand>
+
+    <WaNoInputFiles>
+        <WaNoInputFile logical_filename="define_file.py">define_file.py</WaNoInputFile>
+    </WaNoInputFiles>
+    
+	<WaNoOutputFiles>
+        <WaNoOutputFile>ridft.out</WaNoOutputFile>
+        <WaNoOutputFile>eiger.out</WaNoOutputFile>
+        <WaNoOutputFile>energy</WaNoOutputFile>
+        <WaNoOutputFile>control</WaNoOutputFile>
+    </WaNoOutputFiles>
+</WaNoTemplate>
