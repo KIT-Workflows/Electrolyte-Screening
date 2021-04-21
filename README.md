@@ -1,2 +1,2 @@
-# Electrolyte-Screening-
+# Electrolyte-Screening
 Electrolyte-Screening for battery materials
