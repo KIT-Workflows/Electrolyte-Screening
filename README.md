@@ -1,4 +1,11 @@
-# DFT_Surface
+# Electrolyte-Screening
+
+For understanding the solvation structure-conductivity relationship of concentrated-salt system, I propose firstly that artiical solvation structure designed including numerous possibilities of solvent-salt system and all possible combinations. Then we analyze the electronic structure of the solvation complex in  the sense of binding strengthen between cation and cooridnated solvent/anion. This binding strength will be used as a descriptor for the solvation structure. In the following, MD will be carried out to statistically calculate the diffusion rates. A statistical analysis of various sovlation structure and corresponding diffusion rates will be done and a supposed volcano-shaped curve between descriptors and diffusion will be built up.
+
+
+Basis: for a specific salt-concentrated electrolyte system, it is supposed to have different solvation structures. How we could describe the electrolyte system with comparatively simple parameters? I propose it is the binding energy in between the solvation complex based on studying literatures.
+
+
 In this workflow, we use the SimStack framework features to perform as an option a single shot DFT calculation of molecules absorbing on a surface. Here, we combine four different WaNos: Mult_Mol, Surface, DFT_VASP, and Table_Generator, to set up a molecule position on the surface, surface type, load molecules file structures, and choose the methods embedded in the DFT approach using VASP code. A table containing the system's total energy, molecule label, and molecule position on the surface is the expected output of this protocol.
 
 Using the drag-and-drop environment of Simstack, we can build the Workflow depicted in **Fig 1** in four steps. The Mult_mol WaNo accounts for the number of different positions for each molecule on the surface.  In the second step, we add the Surface WaNo inside the ForEach loop control to generate the POSCAR files of adsorbed molecules to the chosen surface. In the third step, we insert the DFT_VASP WaNo, which will receive the generated files from the previous WaNo. At this step, We can take advantage of the parallelization in the HPC remote resources once the ForEach loop control is designed for this end.  Table_Generator WaNo extracts three variable values on the OUTCAR file: the output file of steps two and three. This WaNo builds a table named Table_var in CSV format at the end of the protocol. 
