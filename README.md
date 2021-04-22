@@ -19,7 +19,7 @@ Using the drag-and-drop environment of Simstack, we can build the Workflow depic
 ```
 
 ## DFT_Surface workflow with **_ForEach_** loop control
-![Semantic description of image](Workflow_DFT_Surface.png)
+![Semantic description of image](Electrolyte-Screening.png)
 
 **Fig 1** _This workflow aims to perform several DFT calculations of molecules absorbing on a given surface. It is composed of Mult_Mol, Surface, DFT_VASP, and Table_Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of points over the surface, where the molecule will be added. Steps 2 and 3 define the surface type and the DFT calculation methods employed in the simulation. The WaNo in the last step extracts the inquired variables of the output file from the previous steps._
 
