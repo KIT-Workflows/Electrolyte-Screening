@@ -26,34 +26,33 @@ To get this workflow up running on your available computational resources, make 
 1. Atomic Simulation Environment (ASE).
 2. Python Materials Genomics (Pymatgen).
 3. Numpy, os, sys, re, yaml, subprocess.
-4. json, csv, shutil, tarfile. 
+4. json, csv, shutil, tarfile 
 ```
-## 2. Mult_Mol Inputs
-- Range of the variable position. 
-- Number of points in the present in the range. 
-- Beginning of the Molecule name, which should appear in all molecules. 
-- Directory with the zip file of the molecules.
-## 3. Mult_Mol Output
-- It should pass all the information to the next WaNo inside the ForEach loop through the `Mult_Mol.iter.*` command on the top of the loop, as Fig 1 shows in step 2.
-## 4. Surface Inputs
-- Aux_var should be set as `${ForEach_iterator_ITER}` from import workflow variable.
-- Mol_name should be set as `Mult_Mol.Molecule_name` from import workflow variable.
-- Defining bulk unit cell types, element, and lattice constant.
-- Defining slab size, vacuum size, Miller index of the surface, and as an option, set a supercell.
-- Check the box when you want to adsorb a molecule on the surface previously defined.
-- Setting the molecule distance over the surface and molecule-molecule image distance.
-## 5. Surface Output
-- POSCAR and Input_data.yml files, which should be passed to DFT_VASP WaNo.
-## 6. DFT_VASP Inputs
-- **INCAR tab**: as an option, we can set all INCAR flags available within VASP. However, we expose only a few of them, which are essential for the problem. See the GUI of this WaNo. A brief description of each flag pops up when we rover the mouse over the inputs.
-- **KPOINTS tab**: Here the user can define two types of KPOINTS, `Kpoints_length` and `Kpoints_Monkhorst`.
-- **Analysis tab**: Aimed to compute Bader charge analysis and DOS.
-- **Files_Run tab**: Mandatory loads the POSCAR file, and as an option can load INCAR, POTCAR, KPOINTS, and KORINGA files. The KORINGA file can be any file. In the case of this problem, it loads the Input_data.yml file.
-## 7. DFT_VASP Output
-- OUTCAR file.
-## 8. Table_Generator Inputs
-- Search_in_File: Should be set as OUTCAR and import the OUTCAR file using `ForEach/*/DFT_VASP/outputs/OUTCAR` command.
+## 2. Range-It Inputs
+- Float and Int modes
+- Range of the variable. 
+- Number of points in the present in the range.
+## 3. Range-It Output
+- It should pass all the information to the next **WaNo** inside the ForEach loop through the ```Range-It.*``` command on the top of the loop, as **Fig 1** shows.
+## 4. Structure-Generator Inputs
+- Directory with the ```zip``` file of the molecules.
+- Position of the attached molecule in relation to seed one.
+## 5. Structure-Generator Output
+- `.xyz` file, which should be passed to DFT-Turbomole **WaNo**.
+- 
+## 6. DFT-Turbomole Inputs
+- **Molecular-structure**: Here the user can load the `.xyz` file from the previous one. **WaNo**.
+- **Basis-set**: Basis set types.
+- **Starting-orbitals**: charge of the system
+## 7. DFT-Turbomole Output
+-  ridft.out file
+-  eiger.out file
+-  energy file
+-  job.last file
+-  control (initial input file of Turbomole code)
+## 8. Table-Generator Inputs
+- Search_in_File: For this case, the job.last file is imported using `ForEach/*/DFT-Turbomole/outputs/job.last` command.
 - Delete_Files: check the box option.
-- Search_Parameters: Set the variables `z_0`, `File_number`, and `energy`.  
-## 8. Table_Generator Output
+- Search-Parameters: Set the variables `Structure-label` and `HOMO-LUMO gap`.  
+## 8. Table-Generator Output
 - Table_var file in CSV format containing the variables defined in the Search_Parameters field.
