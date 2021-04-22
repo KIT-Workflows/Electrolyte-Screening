@@ -54,5 +54,5 @@ To get this workflow up running on your available computational resources, make 
 - Search_in_File: For this case, the job.last file is imported using `ForEach/*/DFT-Turbomole/outputs/job.last` command.
 - Delete_Files: check the box option.
 - Search-Parameters: Set the variables `Structure-label` and `HOMO-LUMO gap`.  
-## 8. Table-Generator Output
+## 9. Table-Generator Output
 - Table_var file in CSV format containing the variables defined in the Search_Parameters field.
