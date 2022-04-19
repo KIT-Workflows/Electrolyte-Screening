@@ -12,7 +12,7 @@ Using the drag-and-drop environment of Simstack, we can build the workflow depic
 4. Arrange all the HOMO-LUMO gap energy values of the system in a table format (Table-Generator).
 ```
 
-## DFT_Surface workflow with **_ForEach_** loop control
+## Electrolyte-Screening with **_ForEach_** loop control
 ![Semantic description of image](Electrolyte-Screening.png)
 
 **Fig 1** _This workflow aims to perform several DFT calculations of electrolyte systems. It comprises Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of configurations. Steps 2 and 3 define the electrolyte designs and the DFT calculation methods employed in the simulation. The **WaNo** in the last step extracts the inquired variables of the output file from the previous actions._
