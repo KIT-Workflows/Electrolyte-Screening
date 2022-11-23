@@ -1,5 +1,9 @@
 <img src="https://raw.githubusercontent.com/KIT-Workflows/Electrolyte-Screening/main/Structure-Generator/Structure-Generator.png" alt="Electrolyte-Screening WaNo logo" width="200"/>
 
+<img src="https://github.com/KIT-Workflows/Electrolyte-Screening/blob/main/logo_workflow.png"/>
+
+
+
 When publishing results obtained with DFT-VASP WaNo, please consider citing it.
 
 # Electrolyte-Screening
