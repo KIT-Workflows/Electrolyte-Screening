@@ -1,14 +1,14 @@
 # Electrolyte-Screening
 
-In this workflow, we use the SimStack framework features to screening electrolytes systems using DFT calculation. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A table containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
+We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A table containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
 
-Using the drag-and-drop environment of Simstack, we can build the workflow depicted in **Fig 1** in four steps. The Range-It WaNo accounts for the number of different configurations of a given system.  In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the ```.xyz``` files of the configuration system. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. At this step, We can take advantage of the parallelization in the HPC remote resources once the ForEach loop control is designed for this end.  Table-Generator **WaNo** extracts two variable values on the ```job.last``` file: the output file of steps two and three. This **WaNo** builds a table named Table_var in CSV format at the end of the protocol.
+Using the drag-and-drop in SimStack's environment, we can build the workflow depicted in **Fig 1** in four steps. The Range-It WaNo accounts for a given system's different configurations. In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the configuration system's '' .xyz``` files. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. At this step, We can take advantage of the parallelization in the HPC remote resources once the ForEach loop control is designed for this end. Table-Generator **WaNo** extracts two variable values on the ```job.last``` file: steps two and three output files. This **WaNo** builds a table named Table_var in CSV format at the end of the protocol.
 
 ### In this workflow, we will be able to:
 ```
-1. To set up many electrolyte configurations from an initial seed (Range-It).
+1. Set up electrolyte configurations from an initial seed (Range-It).
 2. Load a molecule seed and attach many other molecules to the seed (Structure-Generator).
-3. Run the geometric DFT calculations using Turbomole code, accounting for the proper corrections (DFT-Turbomole).
+3. Run the geometric DFT calculations using the Turbomole code, accounting for the proper corrections (DFT-Turbomole).
 4. Arrange all the HOMO-LUMO gap energy values of the system in a table format (Table-Generator).
 ```
 
@@ -16,8 +16,6 @@ Using the drag-and-drop environment of Simstack, we can build the workflow depic
 ![Semantic description of image](Electrolyte-Screening.png)
 
 **Fig 1** _This workflow aims to perform several DFT calculations of electrolyte systems. It comprises Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of configurations. Steps 2 and 3 define the electrolyte designs and the DFT calculation methods employed in the simulation. The **WaNo** in the last step extracts the inquired variables of the output file from the previous actions._
-
-aqui
 
 ## 1. Python Setup
 To get this workflow up running on your available computational resources, make sure to have the below libraries installed on Python 3.6 or newer.
@@ -56,3 +54,14 @@ To get this workflow up running on your available computational resources, make 
 - Search-Parameters: Set the variables `Structure-label` and `HOMO-LUMO gap`.  
 ## 9. Table-Generator Output
 - Table_var file in CSV format containing the variables defined in the Search_Parameters field.
+
+## Acknowledgements
+This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No. 957189 (BIG-MAP). It is also part of BATTERY 2030+ initiative under grant agreement No. 957213.
+
+## License & copyright
+  Developer: Celso Ricardo C. Rêgo, 
+  Multiscale Materials Modelling and Virtual Design,
+  Institute of Nanotechnology, Karlsruhe Institute of Technology
+  https://www.int.kit.edu/wenzel.php
+
+Licensed under the [KIT License](LICENSE).
