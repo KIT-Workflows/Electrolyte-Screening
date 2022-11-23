@@ -1,6 +1,6 @@
-# Electrolyte-Screening
 <img src="https://raw.githubusercontent.com/KIT-Workflows/Electrolyte-Screening/main/Structure-Generator/Structure-Generator.png" alt="Electrolyte-Screening WaNo logo" width="200"/>
 
+# Electrolyte-Screening
 
 We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A table containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
 
