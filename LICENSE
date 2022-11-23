@@ -20,9 +20,9 @@ THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 
 The sentences below should be included in the README file.
 
-This code (WaNo or Workflow names, e.g., DFT-VASP) is made available under the KIT license enclosed with the software.
+This code (WaNo or Workflow names, e.g., Electrolyte-Screening) is made available under the KIT license enclosed with the software.
  
 Over and above the legal restrictions imposed by this license, you are obliged to provide proper attribution if you use this software for an academic publication. This can be done by citing the code directly and the paper below,
-	- DFT-VASP, (2022). https://github.com/KIT-Workflows/DFT-VASP.
+	- Electrolyte-Screening, (2022). https://github.com/KIT-Workflows/Electrolyte-Screening.
 	- SimStack: An Intuitive workflow framework. Front. Mater. 9.877597, doi: 10.3389/fmats.2022.877597.
 
