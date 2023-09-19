@@ -1,0 +1,19 @@
+{
+    "workflow_environment":"SimStack",
+    "title": "Electrolyte-Screening",
+    "description": "Electrolyte-Screening for battery materials.",
+    "authors": [
+        "Celso R. C. Rego", "celsorego@kit.edu"
+    ],
+    "version": "0.0.1",
+    "logo": "logo_workflow.png",
+    "release": {
+        "latest_release_date": "2023-19-09",
+        "latest_release_tag": "0.0.1"
+    },
+    
+    "keywords": [
+        "dft",
+        "battery"
+    ]
+}
