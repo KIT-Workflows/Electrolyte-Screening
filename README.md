@@ -6,7 +6,7 @@ When publishing results obtained with DFT-VASP WaNo, please consider citing it.
 
 We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A table containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
 
-Using the drag-and-drop in SimStack's environment, we can build the workflow depicted in **Fig 1** in four steps. The Range-It WaNo accounts for a given system's different configurations. In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the configuration system's ```.xyz``` files. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. At this step, We can take advantage of the parallelization in the HPC remote resources once the ForEach loop control is designed for this end. Table-Generator **WaNo** extracts two variable values on the ```job.last``` file: steps two and three output files. This **WaNo** builds a table named Table_var in CSV format at the end of the protocol.
+Using the drag-and-drop in SimStack's environment, we can build the workflow depicted in **Fig 1** in four steps. The Range-It WaNo accounts for a given system's different configurations. In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the configuration system's ```.xyz``` files. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. We can take advantage of the parallelization in the HPC remote resources at this step once the ForEach loop control is designed for this end. Table-Generator **WaNo** extracts two variable values on the ```job.last``` file: steps two and three output files. This **WaNo** builds a table named Table_var in CSV format at the end of the protocol.
 
 ### In this workflow, we will be able to:
 ```
@@ -22,7 +22,7 @@ Using the drag-and-drop in SimStack's environment, we can build the workflow dep
 **Fig 1** _This workflow aims to perform several DFT calculations of electrolyte systems. It comprises Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of configurations. Steps 2 and 3 define the electrolyte designs and the DFT calculation methods employed in the simulation. The **WaNo** in the last step extracts the inquired variables of the output file from the previous actions._
 
 ## 1. Python Setup
-To get this workflow up running on your available computational resources, make sure to have the below libraries installed on Python 3.6 or newer.
+To get this workflow up and running on your available computational resources, have the below libraries installed on Python 3.6 or newer.
 
 ```
 1. Atomic Simulation Environment (ASE).
@@ -38,12 +38,12 @@ To get this workflow up running on your available computational resources, make 
 - It should pass all the information to the next **WaNo** inside the ForEach loop through the ```Range-It.*``` command on the top of the loop, as **Fig 1** shows.
 ## 4. Structure-Generator Inputs
 - Directory with the ```zip``` file of the molecules.
-- Position of the attached molecule in relation to seed one.
+- Position of the attached molecule about seed one.
 ## 5. Structure-Generator Output
-- `.xyz` file, which should be passed to DFT-Turbomole **WaNo**.
+- `.xyz` file should be passed to DFT-Turbomole **WaNo**.
 - 
 ## 6. DFT-Turbomole Inputs
-- **Molecular-structure**: Here the user can load the `.xyz` file from the previous one. **WaNo**.
+- **Molecular-structure**: The user can load the `.xyz` file from the previous one. **WaNo**.
 - **Basis-set**: Basis set types.
 - **Starting-orbitals**: charge of the system
 ## 7. DFT-Turbomole Output
@@ -53,16 +53,16 @@ To get this workflow up running on your available computational resources, make 
 -  job.last file
 -  control (initial input file of Turbomole code)
 ## 8. Table-Generator Inputs
-- Search_in_File: For this case, the job.last file is imported using `ForEach/*/DFT-Turbomole/outputs/job.last` command.
+- Search_in_File: The `job.last` file is imported using `ForEach/*/DFT-Turbomole/outputs/job.last` command.
 - Delete_Files: check the box option.
 - Search-Parameters: Set the variables `Structure-label` and `HOMO-LUMO gap`.  
 ## 9. Table-Generator Output
 - Table_var file in CSV format containing the variables defined in the Search_Parameters field.
 
 ## Acknowledgements
-This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 957189. The project is part of BATTERY 2030+, the large-scale European research initiative for inventing the sustainable batteries of the future.
+This project has received funding from the European Union’s Horizon 2020 research and innovation program under grant agreement No 957189. The project is part of BATTERY 2030+, the large-scale European research initiative for inventing the sustainable batteries of the future.
 
-## License & copyright
+## License & Copyright
   Developer: Celso Ricardo C. Rêgo, 
   Multiscale Materials Modelling and Virtual Design,
   Institute of Nanotechnology, Karlsruhe Institute of Technology
