@@ -4,16 +4,16 @@ When publishing results obtained with DFT-VASP WaNo, please consider citing it.
 
 # Electrolyte-Screening
 
-We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A table containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
+We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and DB-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A `.yml` file containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
 
-Using the drag-and-drop in SimStack's environment, we can build the workflow depicted in **Fig 1** in four steps. The Mult-It WaNo accounts for a given system's different configurations. In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the configuration system's ```.xyz``` files. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. We can take advantage of the parallelization in the HPC remote resources at this step once the ForEach loop control is designed for this end. DB-Generator **WaNo** generates a lightweight, human-readable database in `.yml` format for all **WaNos** of a given workflow. This **WaNo** builds a table named Table_var in CSV format at the end of the protocol.
+Using the drag-and-drop in SimStack's environment, we can build the workflow depicted in **Fig 1** in four steps. The Mult-It WaNo accounts for a given system's different configurations. In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the configuration system's ```.xyz``` files. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. We can take advantage of the parallelization in the HPC remote resources at this step once the ForEach loop control is designed for this end. DB-Generator **WaNo** generates a lightweight, human-readable database in `.yml` format for all **WaNos** of a given workflow.
 
 ### In this workflow, we will be able to:
 ```
 1. Set up electrolyte configurations from an initial seed (Mult-It).
 2. Load a molecule seed and attach many other molecules to the seed (Structure-Generator).
 3. Run the geometric DFT calculations using the Turbomole code, accounting for the proper corrections (DFT-Turbomole).
-4. Arrange all the HOMO-LUMO gap energy values of the system in a table format (DB-Generator).
+4. Arrange all the HOMO-LUMO gap energy values of the system in a `.yml` format (DB-Generator).
 ```
 
 ## Electrolyte-Screening with **_ForEach_** loop control
