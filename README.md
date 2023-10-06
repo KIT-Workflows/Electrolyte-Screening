@@ -17,12 +17,12 @@ Using the drag-and-drop in SimStack's environment, we can build the workflow dep
 ```
 
 ## Electrolyte-Screening with **_ForEach_** loop control
-![Semantic description of image](Electrolyte-Screening.png)
+![Semantic description of image](a_Electrolyte-Screening.jpg)
 
 **Fig 1** _This workflow aims to perform several DFT calculations of electrolyte systems. It comprises Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of configurations. Steps 2 and 3 define the electrolyte designs and the DFT calculation methods employed in the simulation. The **WaNo** in the last step extracts the inquired variables of the output file from the previous actions._
 
 ## 1. Python Setup
-To get this workflow up and running on your available computational resources, have the below libraries installed on Python 3.6 or newer.
+To get this workflow up and running on your available computational resources, install the below libraries on Python 3.6 or newer.
 
 ```
 1. Atomic Simulation Environment (ASE).
