@@ -10,16 +10,16 @@ Using the drag-and-drop in SimStack's environment, we can build the workflow dep
 
 ### In this workflow, we will be able to:
 ```
-1. Set up electrolyte configurations from an initial seed (Range-It).
+1. Set up electrolyte configurations from an initial seed (Mult-It).
 2. Load a molecule seed and attach many other molecules to the seed (Structure-Generator).
 3. Run the geometric DFT calculations using the Turbomole code, accounting for the proper corrections (DFT-Turbomole).
-4. Arrange all the HOMO-LUMO gap energy values of the system in a table format (Table-Generator).
+4. Arrange all the HOMO-LUMO gap energy values of the system in a table format (DB-Generator).
 ```
 
 ## Electrolyte-Screening with **_ForEach_** loop control
 ![Semantic description of image](Electrolyte-Screening.jpg)
 
-**Fig 1** _This workflow aims to perform several DFT calculations of electrolyte systems. It comprises Range-It, Structure-Generator, DFT-Turbomole, and Table-Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of configurations. Steps 2 and 3 define the electrolyte designs and the DFT calculation methods employed in the simulation. The **WaNo** in the last step extracts the inquired variables of the output file from the previous actions._
+**Fig 1** _This workflow aims to perform several DFT calculations of electrolyte systems. It comprises Mult-It, Structure-Generator, DFT-Turbomole, and DB-Generator WaNos connected by the ForEach loop control. In step 1, we generate the number of configurations. Steps 2 and 3 define the electrolyte designs and the DFT calculation methods employed in the simulation. The **WaNo** in the last step extracts the inquired variables of the output file from the previous actions._
 
 ## 1. Python Setup
 To get this workflow up and running on your available computational resources, install the below libraries on Python 3.6 or newer.
@@ -30,11 +30,11 @@ To get this workflow up and running on your available computational resources, i
 3. Numpy, os, sys, re, yaml, subprocess.
 4. json, csv, shutil, tarfile 
 ```
-## 2. Range-It Inputs
+## 2. Mult-It Inputs
 - Float and Int modes
 - Range of the variable. 
 - Number of points in the present in the range.
-## 3. Range-It Output
+## 3. Mult-It Output
 - It should pass all the information to the next **WaNo** inside the ForEach loop through the ```Range-It.*``` command on the top of the loop, as **Fig 1** shows.
 ## 4. Structure-Generator Inputs
 - Directory with the ```zip``` file of the molecules.
@@ -52,12 +52,12 @@ To get this workflow up and running on your available computational resources, i
 -  energy file
 -  job.last file
 -  control (initial input file of Turbomole code)
-## 8. Table-Generator Inputs
+## 8. DB-Generator Inputs
 - Search_in_File: The `job.last` file is imported using `ForEach/*/DFT-Turbomole/outputs/job.last` command.
 - Delete_Files: check the box option.
 - Search-Parameters: Set the variables `Structure-label` and `HOMO-LUMO gap`.  
-## 9. Table-Generator Output
-- Table_var file in CSV format containing the variables defined in the Search_Parameters field.
+## 9. DB-Generator Output
+- DB-Name(e.g., `db-screening`) file in `.yml` format containing the variables defined in the Search_Parameters field.
 
 ## Acknowledgements
 This project has received funding from the European Union’s Horizon 2020 research and innovation program under grant agreement No 957189. The project is part of BATTERY 2030+, the large-scale European research initiative for inventing the sustainable batteries of the future.
