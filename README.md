@@ -4,7 +4,7 @@ When publishing results obtained with DFT-VASP WaNo, please consider citing it.
 
 # Electrolyte-Screening
 
-We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Range-It, Structure-Generator, DFT-Turbomole, and DB-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A `.yml` file containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
+We use the SimStack framework features to screen the best electrolyte candidates using DFT simulations. Here, we combine four different **WaNos**: Mult-It, Structure-Generator, DFT-Turbomole, and DB-Generator, to set up an electrolyte system, load the file structure, and choose the methods embedded in the DFT approach using Turbomole code. A `.yml` file containing the system's `HOMO-LUMO` gap energy and molecule label is the expected output of this protocol.
 
 Using the drag-and-drop in SimStack's environment, we can build the workflow depicted in **Fig 1** in four steps. The Mult-It WaNo accounts for a given system's different configurations. In the second step, we add the Structure-Generator **WaNo** inside the ForEach loop control to generate the configuration system's ```.xyz``` files. In the third step, we insert the DFT-Turbomole **WaNo**, which will receive the generated files from the previous one. We can take advantage of the parallelization in the HPC remote resources at this step once the ForEach loop control is designed for this end. DB-Generator **WaNo** generates a lightweight, human-readable database in `.yml` format for all **WaNos** of a given workflow.
 
@@ -35,7 +35,7 @@ To get this workflow up and running on your available computational resources, i
 - Range of the variable. 
 - Number of points in the present in the range.
 ## 3. Mult-It Output
-- It should pass all the information to the next **WaNo** inside the ForEach loop through the ```Range-It.*``` command on the top of the loop, as **Fig 1** shows.
+- It should pass all the information to the next **WaNo** inside the ForEach loop through the ```Mult-It.*``` command on the top of the loop, as **Fig 1** shows.
 ## 4. Structure-Generator Inputs
 - Directory with the ```zip``` file of the molecules.
 - Position of the attached molecule about seed one.
