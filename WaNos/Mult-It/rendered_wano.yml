@@ -1,0 +1,10 @@
+Float: false
+Int: false
+N-points: 10
+Step: 2
+Structures: true
+VarF-begin: 1.0
+VarF-end: 10.0
+VarI-begin: 1
+VarI-end: 10
+tartfile: Structures.tar

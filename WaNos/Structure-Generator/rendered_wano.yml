@@ -1,0 +1,6 @@
+Add-Molecules:
+- distance: '10.0'
+  mol-name: mol_1.xyz
+- distance: 2.0
+  mol-name: mol_2.xyz
+structures: structures.tar.xz

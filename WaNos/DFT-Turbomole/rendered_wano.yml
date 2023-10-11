@@ -1,0 +1,37 @@
+Basis set:
+  Basis set type: def2-SVP
+DFT options:
+  COSMO calculation: false
+  Functional: pbe
+  Integration grid: m3
+  Max SCF iterations: 3000
+  Memory for RI: 2000
+  Rel permittivity: 1.0
+  Use RI: true
+  vdW correction: None
+Follow-up calculation: false
+Initial guess:
+  G1:
+    Charge: 0
+    Multiplicity: 1
+    Use charge and multiplicity from input file: false
+  Use old orbitals: false
+Molecular structure:
+  Internal coordinates: false
+  Structure file: initial_structure
+  Structure file type: xyz
+Results from old calculation: old_calc.tar.xz
+Title: Title
+Type of calculation:
+  Excited states calculation: false
+  First hyperpolarizability:
+  - frequency (nm): 0.0
+  Frequency calculation: false
+  Hyperpolarizability: false
+  Max optimization cycles: 50000
+  Plot Homo-Lumo Orbt: false
+  Structure optimisation: false
+  TDDFT options:
+    Number of excited states: 5
+    Optimised state: 1
+    Type of excited states: Singlet

@@ -1,0 +1,141 @@
+
+<WaNoTemplate>
+
+	<WaNoMeta>
+ 		<Author>
+		<Name> Tobias Schlöder and Celso R. C. Rego </Name>
+  		<Email> tobias.schloeder@kit.edu, celsorego@kit.edu</Email>
+ 		</Author>
+		<Description>
+			This WaNo performs the DFT calculation using Turbomole code. Here all 
+			the inputs files might be automatically generated or loaded.
+ 		</Description>
+ 		<Keyword>DFT</Keyword>
+	</WaNoMeta>
+
+	<WaNoRoot name="DFT Turbomole">
+
+		<WaNoBool name="Follow-up calculation">False</WaNoBool>
+		<WaNoString visibility_condition="%s == False" visibility_var_path="Follow-up calculation" name="Title">Title</WaNoString>
+		<WaNoFile visibility_condition="%s == True" visibility_var_path="Follow-up calculation" logical_filename="old_calc.tar.xz" name="Results from old calculation">results.tar.xz</WaNoFile>
+
+	    	<WaNoDictBox name='Molecular structure' visibility_condition='%s == False' visibility_var_path='Follow-up calculation'>
+			<WaNoDropDown name = 'Structure file type'>
+				<Entry id = '0' chosen='True'>xyz</Entry>
+				<Entry id = '1'>Turbomole coord</Entry>
+				<Entry id = '2'>Gaussian input</Entry>
+			</WaNoDropDown>
+			<WaNoFile name='Structure file' logical_filename='initial_structure'>structure file</WaNoFile>
+			<WaNoBool name="Internal coordinates">False</WaNoBool>
+            	</WaNoDictBox>
+
+		<WaNoDictBox name="Basis set">
+                	<WaNoDropDown name="Basis set type">
+                    		<Entry id="0">def-SV(P)</Entry>
+                		<Entry id="1" chosen="True">def2-SVP</Entry>
+	         		<Entry id="2">def2-TZVP</Entry>
+	         		<Entry id="3">def2-TZVPP</Entry>
+	            		<Entry id="4">def2-QZVP</Entry>
+	         		<Entry id="5">def2-QZVPP</Entry>
+	           		<Entry id="6">6-31G</Entry>
+				<Entry id="7">6-31G*</Entry>
+				<Entry id="8">6-311G</Entry>
+				<Entry id="9">6-311G*</Entry>
+	            		<Entry id="10">cc-pVDZ</Entry>
+	            		<Entry id="11">aug-cc-pVDZ</Entry>
+				<Entry id="12">cc-pVTZ</Entry>
+	   			<Entry id="13">aug-cc-pVTZ</Entry>
+				<Entry id="14">cc-pVQZ</Entry>
+				<Entry id="15">aug-cc-pVQZ</Entry>
+	        	</WaNoDropDown>
+		</WaNoDictBox>
+	
+            	<WaNoDictBox name="Initial guess">
+			<WaNoBool visibility_condition="%s == True" visibility_var_path="Follow-up calculation" name="Use old orbitals" description = "Charge and multiplicity will be taken from old calculation">False</WaNoBool>
+			<WaNoGroup name='G1' visibility_condition="%s == False" visibility_var_path="Initial guess.Use old orbitals">
+				<WaNoBool name = 'Use charge and multiplicity from input file' visibility_condition = '"%s" == "Gaussian input"' visibility_var_path='Molecular structure.Structure file type'>False</WaNoBool>
+                		<WaNoInt name="Charge" visibility_condition = '%s == False' visibility_var_path = 'Initial guess.G1.Use charge and multiplicity from input file' description = "Extended Hueckel Guess">0</WaNoInt>
+				<WaNoInt name="Multiplicity" visibility_condition = '%s == False' visibility_var_path = 'Initial guess.G1.Use charge and multiplicity from input file' description = "Must be possible with the given charge">1</WaNoInt>
+			</WaNoGroup>
+            	</WaNoDictBox>
+            
+		<WaNoDictBox name="DFT options">
+			<WaNoInt name='Max SCF iterations'>3000</WaNoInt>
+			<WaNoBool name="Use RI">True</WaNoBool>
+			<WaNoInt visibility_condition="%s == True" visibility_var_path="DFT options.Use RI" name="Memory for RI" description="value in MB">2000</WaNoInt>
+			<WaNoDropDown name="Functional">
+				<Entry id="0">None</Entry>
+				<Entry id="1">b-p</Entry>
+				<Entry id="2" chosen="True">pbe</Entry>
+				<Entry id="3">b3-lyp</Entry>
+	            		<Entry id="4">pbe0</Entry>
+	            		<Entry id="5">m06</Entry>
+	            		<Entry id="6">m06-2x</Entry>
+				<Entry id="7">tpss</Entry>
+				<Entry id="8">tpssh</Entry>
+				<Entry id="9">wb97x</Entry>
+	        	</WaNoDropDown>
+				
+			<WaNoDropDown name="Integration grid">
+				<Entry id="0" chosen="True">m3</Entry>
+				<Entry id="1">m4</Entry>
+				<Entry id="2">m5</Entry>
+	        	</WaNoDropDown>
+
+			<WaNoDropDown name="vdW correction">
+				<Entry id="0" chosen="True">None</Entry>
+				<Entry id="1">D2</Entry>
+				<Entry id="2">D3</Entry>
+				<Entry id="3">D3-BJ</Entry>
+				<Entry id="4">D4</Entry>
+	        	</WaNoDropDown>
+			<WaNoBool name="COSMO calculation">False</WaNoBool>
+			<WaNoFloat name="Rel permittivity" visibility_condition="%s == True" visibility_var_path="DFT options.COSMO calculation">1.0</WaNoFloat>
+            	</WaNoDictBox>
+            
+		<WaNoDictBox name="Type of calculation">
+			<WaNoBool name="Structure optimisation">False</WaNoBool>
+			<WaNoInt visibility_condition='%s == True' visibility_var_path='Type of calculation.Structure optimisation' name="Max optimization cycles">50000</WaNoInt>
+			
+			<WaNoBool name="Excited states calculation">False</WaNoBool>
+			<WaNoDictBox visibility_condition="%s == True" visibility_var_path="Type of calculation.Excited states calculation" name="TDDFT options">
+				<WaNoDropDown description="Only relevant for for closed-shell ground states" visibility_condition="%i == 1" visibility_var_path="Initial guess.G1.Multiplicity" name="Type of excited states">
+					<Entry id="0" chosen="True">Singlet</Entry>
+					<Entry id="1">Triplet</Entry>
+				</WaNoDropDown>
+				<WaNoInt name="Number of excited states">5</WaNoInt>
+				<WaNoInt visibility_condition="%s == True" visibility_var_path="Type of calculation.Structure optimisation" name="Optimised state">1</WaNoInt>
+	    	</WaNoDictBox>
+	
+			<WaNoBool name="Hyperpolarizability">False</WaNoBool>
+			<WaNoMultipleOf name="First hyperpolarizability" visibility_condition='%s == True' visibility_var_path='Type of calculation.Hyperpolarizability'>
+				<Element id="0">
+				   <WaNoFloat name="frequency (nm)">0.0</WaNoFloat>
+				</Element>
+			</WaNoMultipleOf>
+
+			<WaNoBool name="Frequency calculation" visibility_condition="%s == False" visibility_var_path='Type of calculation.Excited states calculation' description = "Vibrational Analysis only for ground states (using aoforce)">False</WaNoBool>
+			<WaNoBool name="Plot Homo-Lumo Orbt">False</WaNoBool>
+
+			
+
+		</WaNoDictBox>
+    </WaNoRoot>
+
+    <WaNoExecCommand>
+		bash config.sh		
+	</WaNoExecCommand>
+
+    <WaNoInputFiles>
+		<WaNoInputFile logical_filename="config.sh">config.sh</WaNoInputFile>
+		<WaNoInputFile logical_filename="run_tm.py">run_tm.py</WaNoInputFile>
+        <WaNoInputFile logical_filename="turbomole_functions.py">turbomole_functions.py</WaNoInputFile>
+		<WaNoInputFile logical_filename="vmd_cube.py">vmd_cube.py</WaNoInputFile>
+	</WaNoInputFiles>
+    
+    <WaNoOutputFiles>
+        <WaNoOutputFile>results.tar.xz</WaNoOutputFile>
+        <WaNoOutputFile>turbomole_results.yml</WaNoOutputFile>
+        <WaNoOutputFile>final_structure.xyz</WaNoOutputFile>
+    </WaNoOutputFiles>
+</WaNoTemplate>

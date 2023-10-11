@@ -1,0 +1,28 @@
+<WaNoTemplate>
+	
+	<WaNoRoot name="Structure-Generator">
+	<WaNoFile logical_filename="structures.tar.xz"  name="structures">Choose the .tar file</WaNoFile>
+	
+		<WaNoMultipleOf name="Add-Molecules">
+ 			<Element id="0">
+		 		<WaNoFloat name="distance">2.0</WaNoFloat>
+				<WaNoString name="mol-name">name</WaNoString>
+ 			</Element>
+ 		</WaNoMultipleOf>
+
+	</WaNoRoot>
+	
+	<WaNoExecCommand>
+		bash config.sh 
+	</WaNoExecCommand>
+	
+	<WaNoInputFiles>
+		<WaNoInputFile logical_filename="attach.py">attach.py</WaNoInputFile>
+		<WaNoInputFile logical_filename="config.sh">config.sh</WaNoInputFile>
+	</WaNoInputFiles>
+
+	<WaNoOutputFiles>
+		<WaNoOutputFile>add_mol.xyz</WaNoOutputFile>	
+    </WaNoOutputFiles>
+
+</WaNoTemplate>
