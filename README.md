@@ -28,7 +28,7 @@ To get this workflow up and running on your available computational resources, i
 1. Atomic Simulation Environment (ASE).
 2. Python Materials Genomics (Pymatgen).
 3. Numpy, os, sys, re, yaml, subprocess.
-4. json, csv, shutil, tarfile 
+4. json, csv, shutil, tarfile, numpy 
 ```
 ## 2. Mult-It Inputs
 - Float and Int modes
@@ -36,7 +36,7 @@ To get this workflow up and running on your available computational resources, i
 - Number of points in the present in the range.
 ## 3. Mult-It Output
 - It should pass all the information to the next **WaNo** inside the ForEach loop through the ```Mult-It.*``` command on the top of the loop, as **Fig 1** shows.
-- Create a variable in the **Advance For** loop control using numpy, e.g.;
+- Create a variable named ```dist``` in the **Advance For** loop control using numpy, e.g.;
   
 ```
 np.linspace(Mult-It.VarF-begin, Mult-It.VarF-end, Mult-It.N-points)
